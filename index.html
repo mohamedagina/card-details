@@ -30,27 +30,31 @@
   </head>
   <body>
     <main>
-      <div class="vcard-container container">
-        <article class="vcard card-face">
+      <div class="vcard-container">
+        <article class="vcard card-back">
+          <p class="vcard-cvc sub-text">
+            <span class="sr-only">card cvc: </span>000
+          </p>
+        </article>
+
+        <article class="vcard card-front">
           <img class="vcard-logo" src="images/card-logo.svg" alt="" />
 
-          <div class="vcard-number">0000 0000 0000 0000</div>
+          <div class="vcard-number">
+            <span class="sr-only">card number: </span>0000 0000 0000 0000
+          </div>
 
-          <div class="vcard-info">
-            <p><span class="sr-only">Holder name: </span>jane Appleseed</p>
+          <div class="vcard-info sub-text">
+            <p><span class="sr-only">holder name: </span>jane Appleseed</p>
             <p><span class="sr-only">expire date (MM/YY): </span>00/00</p>
           </div>
         </article>
-
-        <article class="vcard card-back">
-          <p class="vcard-cvc">000</p>
-        </article>
       </div>
 
-      <div class="form-container container">
+      <div class="form-container">
         <form class="vcard-form">
           <label for="card-holder"
-            >card holder
+            >cardholder name
             <input
               id="card-holder"
               type="text"

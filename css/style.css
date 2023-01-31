@@ -20,8 +20,19 @@ ul {
 
 button,
 input,
-textarea {
+textarea,
+a {
   font: inherit;
+  color: inherit;
+}
+
+button {
+  text-transform: capitalize;
+  cursor: pointer;
+}
+
+input {
+  outline: none;
 }
 
 img {
@@ -37,8 +48,198 @@ img {
   --colors-dark-grayish-violet: hsl(279, 6%, 55%);
   --colors-very-dark-violet: hsl(278, 68%, 11%);
   --gradients-primary: linear-gradient(
-    to-right,
+    to right,
     hsl(249, 99%, 64%),
     hsl(278, 94%, 30%)
   );
+}
+
+body {
+  font: 500 0.875rem 'Space Grotesk', sans-serif;
+  color: var(--colors-very-dark-violet);
+}
+
+/* Utilities */
+.sr-only {
+  border: 0 !important;
+  clip: rect(1px, 1px, 1px, 1px) !important;
+  -webkit-clip-path: inset(50%) !important;
+  clip-path: inset(50%) !important;
+  height: 1px !important;
+  overflow: hidden !important;
+  margin: -1px !important;
+  padding: 0 !important;
+  position: absolute !important;
+  width: 1px !important;
+  white-space: nowrap !important;
+}
+
+.btn-primary {
+  border: none;
+  background-color: var(--colors-very-dark-violet);
+  color: var(--colors-white);
+  padding: 1em 1.5em;
+  border-radius: 0.5em;
+}
+
+.sub-text {
+  font-size: 0.75em;
+}
+
+.flex-container {
+  display: flex;
+  gap: 0.5rem;
+}
+/*-------------*/
+
+/* virtual Card Container */
+
+.vcard-container {
+  display: flex;
+  flex-direction: row-reverse;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--colors-white);
+  background: url('../images/bg-main-mobile.png') no-repeat center/cover;
+  padding: 2rem 1rem 4rem;
+}
+
+.vcard {
+  aspect-ratio: 16/9;
+  width: min(420px, 85%);
+  border-radius: 0.5rem;
+  flex-shrink: 0;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+}
+
+.vcard.card-front {
+  transform: translate(82%, 58%);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 1rem;
+  text-align: center;
+  padding: 1.25rem;
+  background: url('../images/bg-card-front.png') no-repeat center/cover;
+}
+
+.vcard.card-back {
+  background: url('../images/bg-card-back.png') no-repeat center/cover;
+}
+
+.vcard .vcard-logo {
+  margin-bottom: auto;
+  width: 20%;
+}
+
+.vcard.card-front .vcard-info {
+  display: flex;
+  justify-content: space-between;
+}
+
+.vcard-number {
+  white-space: nowrap;
+}
+
+.vcard.card-back .vcard-cvc {
+  float: right;
+  position: relative;
+  top: 50%;
+  right: calc(10% + 0.5em);
+  transform: translateY(-50%);
+}
+
+/*---------------*/
+
+/* Form Container */
+
+.form-container {
+  display: grid;
+  place-items: center;
+  padding: 6rem 1.5rem 3rem;
+  flex: 1;
+}
+
+.vcard-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: min(480px, 100%);
+}
+
+.vcard-form label {
+  text-transform: uppercase;
+  width: 100%;
+}
+
+.vcard-form label input {
+  width: 100%;
+  margin-top: 0.25rem;
+  padding: 0.75em;
+  border-radius: 0.5em;
+  border: 1px solid var(--colors-light-grayish-violet);
+  transition: border-color 0.3s ease-in-out;
+}
+
+.vcard-form label input:focus {
+  background: linear-gradient(white, white) padding-box,
+    var(--gradients-primary) border-box;
+  border: 1px solid transparent;
+}
+
+.vcard-form .vcard-validation {
+  display: flex;
+  gap: 0.75rem;
+}
+/*----------------*/
+
+@media screen and (min-width: 370px) {
+  body {
+    font-size: 1rem;
+  }
+}
+
+@media screen and (min-width: 480px) and (max-width: 799px),
+  (min-width: 1200px) {
+  body {
+    font-size: 1.125rem;
+  }
+
+  .vcard-number {
+    font-size: 1.5rem;
+  }
+
+  .vcard.card-front {
+    gap: 2rem;
+    padding: 2rem;
+  }
+}
+
+@media screen and (min-width: 800px) {
+  main {
+    display: flex;
+  }
+
+  .vcard-container {
+    flex-direction: column-reverse;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 2rem;
+    background: url('../images/bg-main-desktop.png') no-repeat center/cover;
+    min-height: 100vh;
+    width: 35%;
+    padding: 2rem 0;
+  }
+
+  .vcard.card-front {
+    transform: translate(25%, 0);
+  }
+
+  .vcard.card-back {
+    transform: translateX(50%);
+  }
+
+  .form-container {
+    padding: 1rem 2rem 1rem 10rem;
+  }
 }

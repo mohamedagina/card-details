@@ -6,16 +6,22 @@
 const handleSubmit = e => {
   const form = e.target;
   e.preventDefault();
-  form.classList.add('submitted');
-  form.querySelector('.inputs').remove();
-  const successMessage = document.createElement('div');
-  successMessage.className = 'success-message';
-  const innerHtml = `<span class="message-heading">thank you !</span>
+  if (form.querySelector('button').innerText.toLowerCase() === 'continue') {
+    location.reload();
+  } else {
+    form.classList.add('submitted');
+    form.querySelector('.inputs').remove();
+    const successMessage = document.createElement('div');
+    successMessage.className = 'success-message';
+    const innerHtml = `<span class="message-heading">thank you !</span>
   <span class="message-description">We've added your card details</span>
   `;
-  successMessage.innerHTML = innerHtml;
+    successMessage.innerHTML = innerHtml;
 
-  form.insertAdjacentElement('afterbegin', successMessage);
+    form.insertAdjacentElement('afterbegin', successMessage);
+
+    form.querySelector('button').innerText = 'Continue';
+  }
 };
 
 // prevent default error message

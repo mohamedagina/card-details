@@ -35,6 +35,17 @@ input {
   outline: none;
 }
 
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type='number'] {
+  appearance: textfield;
+  -moz-appearance: textfield;
+}
+
 img {
   max-width: 100%;
   height: auto;
@@ -163,13 +174,50 @@ body {
 .vcard-form {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 3rem;
   width: min(480px, 100%);
 }
 
+.vcard-form .inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
 .vcard-form label {
+  position: relative;
   text-transform: uppercase;
   width: 100%;
+  isolation: isolate;
+}
+.vcard-form.submitted .inputs {
+  display: none;
+}
+
+.vcard-form.submitted {
+  text-align: center;
+}
+.vcard-form.submitted::before {
+  content: '';
+  width: 5rem;
+  height: 5rem;
+  background: url('../images/icon-complete.svg') no-repeat center/cover;
+  align-self: center;
+}
+
+.success-message {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.success-message .message-heading {
+  text-transform: uppercase;
+  font-size: 2rem;
+}
+
+.success-message .message-description {
+  color: var(--colors-dark-grayish-violet);
 }
 
 .vcard-form label input {
@@ -185,6 +233,35 @@ body {
   background: linear-gradient(white, white) padding-box,
     var(--gradients-primary) border-box;
   border: 1px solid transparent;
+}
+
+.vcard-form .visited::after {
+  content: '';
+  position: absolute;
+  bottom: -1.5rem;
+  left: 0.5rem;
+  z-index: -1;
+  text-transform: none;
+  font-size: 0.75em;
+  color: var(--colors-red);
+  transform: translateY(-150%);
+  transition: transform 0.3s ease-in;
+}
+
+.vcard-form .visited:not(.focused)::after {
+  transform: translateY(0);
+}
+
+.vcard-form .visited:not(.focused).invalid::after {
+  content: 'Invalid info';
+}
+
+.vcard-form .visited:not(.focused).empty::after {
+  content: 'Can`t be blank';
+}
+
+.vcard-form .visited input.visited:not(:focus):invalid {
+  border-color: var(--colors-red);
 }
 
 .vcard-form .vcard-validation {
